@@ -5,7 +5,7 @@
 
 // Set up data structures
 const streams = {
-  home: [],
+  home: [], // Home property is constantly getting new tweets
   users: {
     shawndrost: [],
     sharksforcheap: [],
@@ -13,13 +13,13 @@ const streams = {
     douglascalhoun: [],
   },
 };
-const users = Object.keys(streams.users);
+const users = Object.keys(streams.users); // An array of all stream users
 
 // Utility function for adding tweets to our data structures
 const addTweet = (newTweet) => {
   const username = newTweet.user;
-  streams.users[username].push(newTweet);
-  streams.home.push(newTweet);
+  streams.users[username].push(newTweet); // Random users in streams.users have an object pushed into their array. This is how they get the messages
+  streams.home.push(newTweet); // Random 
 };
 
 // Utility function
@@ -48,13 +48,16 @@ const randomMessage = () => {
 // Generate random tweets on a random schedule
 const generateRandomTweet = () => {
   const tweet = {
-    user: randomElement(users),
-    message: randomMessage(),
+    user: randomElement(users), // randomElement picks random users in streams.user 
+    message: randomMessage(), // randomMessage creates the random mesaages
     created_at: new Date(),
   };
   addTweet(tweet);
 };
-
+//console.log(streams.users);
+//console.log(streams.home);
+// Generates number of tweets
+// Need to find out how to keep the tweets generating IN THIS FILE
 for (let i = 0; i < 10; i++) {
   generateRandomTweet();
 }
@@ -80,3 +83,4 @@ const writeTweet = (message) => {
   };
   addTweet(tweet);
 };
+//console.log(writeTweet);
